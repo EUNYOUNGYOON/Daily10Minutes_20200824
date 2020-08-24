@@ -13,6 +13,8 @@ class MainActivity : BaseActivity() {
 
             // 이 받아낸 id/pw를 어떻게 서버에 로그인 확인으로 요청하는가?
 
+
+
         }
 
 
