@@ -1,19 +1,17 @@
 package kr.co.tjoeun.daily10minutes_20200824
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_login.*
 import kr.co.tjoeun.daily10minutes_20200824.utils.ServerUtil
 import org.json.JSONObject
 
-class MainActivity : BaseActivity() {
+class LoginActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
 
         setupEvents()
         setValues()
@@ -35,6 +33,9 @@ class MainActivity : BaseActivity() {
                     Log.d("메인화면에서 응답확인", json.toString())
 
                     val codeNum = json.getInt("code")
+                    // 사유
+                    val message = json.getString("message")
+                    
                     if(codeNum == 200){
                         // 서버 개발자가 로그인 성공일 때는 code를 200으로 준다.
                         // 로그인 성공시에 대한 코드 정의
@@ -42,15 +43,16 @@ class MainActivity : BaseActivity() {
 
                         // 그냥 쓰면 앱 죽고 runOnUiThread 안에서 실행시켜야한다.
                         runOnUiThread {
-                            Toast.makeText(mContext,"로그인 성공", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, "로그인성공", Toast.LENGTH_SHORT).show()
                         }
 
                     }
                     else {
                         // 그 외의 숫자는 실패
+                        // 서버가 알려주는 사유 토스트로 출력
                         Log.e("로그인시도", "실패상황")
                         runOnUiThread {
-                            Toast.makeText(mContext,"로그인 실패", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, message.toString(), Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
