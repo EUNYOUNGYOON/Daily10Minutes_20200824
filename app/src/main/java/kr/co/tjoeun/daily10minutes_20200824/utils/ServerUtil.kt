@@ -1,6 +1,8 @@
 package kr.co.tjoeun.daily10minutes_20200824.utils
 
+import android.util.Log
 import okhttp3.*
+import org.json.JSONObject
 import java.io.IOException
 
 class ServerUtil {
@@ -42,6 +44,13 @@ class ServerUtil {
                 override fun onResponse(call: Call, response: Response) {
                     // 결과가 성공이든 실패든 상관없이 서버가 뭔가 답변을 해준 경우
                     // 응답이 돌아온 경우
+
+                    // 서버가 내려준 응답의 본문을 string 형ㅇ태로 저장
+                    val bodyString = response.body!!.string()
+
+                    // 받아낸 string을 -> 분석하기 용이한 JSONobject 형태로 변환
+                    val json = JSONObject(bodyString)
+                    Log.d("서버응답본문" , json.toString())
                 }
 
 
