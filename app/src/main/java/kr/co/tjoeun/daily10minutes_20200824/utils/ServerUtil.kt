@@ -2,6 +2,7 @@ package kr.co.tjoeun.daily10minutes_20200824.utils
 
 import android.util.Log
 import okhttp3.*
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONObject
 import java.io.IOException
 
@@ -21,7 +22,7 @@ class ServerUtil {
         val BASE_URL = "http://15.164.153.174"
 
         // 로그인 기능 -> 로그인을 수행하는 함수 작성
-        fun postRequestLogin(id : String, pw : String, handler: JsonResponseHandler?) {
+        fun postRequestLogin(id: String, pw: String, handler: JsonResponseHandler?) {
 
             // 안드로이드 앱이 클라이언트로 동작하도록 도와주자
             val client = OkHttpClient()
@@ -63,10 +64,48 @@ class ServerUtil {
                     handler?.onRespnse(json)
 
                 }
+            })
+        }
 
+        // 중복확인
+        fun getRequestEmailCheck(email: String, handler: JsonResponseHandler?) {
+
+            //서버에 Request를 날려주는 클라이언트 역할을 돕는 변수 미리 만들기
+            val client = OkHttpClient()
+
+            // 어느 기능으로 갈건지 주소 완성
+            // url(호스트주소 + 기능주소)을 만드는 과정에서 필요 파라미터도 가공 첨부
+            val urlBuilder = "${BASE_URL}/email_check".toHttpUrlOrNull()!!.newBuilder()
+            // url 가공기를 이용해서 필요한 데이터를 첨부
+            urlBuilder.addEncodedQueryParameter("email", email)
+
+            // 가공이 끝난 url을 가지고 urlStr으로 완성
+            val urlStr = urlBuilder.build().toString()
+
+            // 임시 : 어떻게 url이 가공되었는지 로그로 확인하기 위해
+            Log.d("완성된 url", urlStr)
+
+            // 요청정보를 담는 request
+            val request = Request.Builder()
+                .url(urlStr)
+                .get()
+                .build()
+
+            // 미리 만들어둔 클라이언트 변수를 활용해서 request변수에 적힌 정보로 서비에 요청 날리기(호출 - call)
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string()
+                    val json = JSONObject(bodyString)
+                    Log.d("서버응답본문", json.toString())
+
+                    handler?.onRespnse(json)
+                }
 
             })
-
 
         }
     }
