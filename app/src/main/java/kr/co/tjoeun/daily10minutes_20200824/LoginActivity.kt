@@ -1,11 +1,13 @@
 package kr.co.tjoeun.daily10minutes_20200824
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import kr.co.tjoeun.daily10minutes_20200824.utils.ServerUtil
 import org.json.JSONObject
+import kotlin.math.sign
 
 class LoginActivity : BaseActivity() {
 
@@ -18,6 +20,12 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        signUpBtn.setOnClickListener {
+
+            val myIntent = Intent(mContext, SignUpActivity::class.java)
+            startActivity(myIntent)
+        }
 
         loginBtn.setOnClickListener {
             val inputId = idEdt.text.toString()
