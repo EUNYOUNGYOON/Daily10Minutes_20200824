@@ -2,6 +2,9 @@ package kr.co.tjoeun.daily10minutes_20200824
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kr.co.tjoeun.daily10minutes_20200824.utils.ServerUtil
@@ -17,6 +20,24 @@ class SignUpActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        // 이메일 입력칸의 내용이 변경된 경우 -> 검사 다시하도록 유도
+        signUpEmailEdt.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                Log.d("입력문구", p0.toString())
+
+                emailCheckResultTxt.text = "중복 확인을 해주세요"
+            }
+
+        })
 
         // 중복확인버튼이 눌렸을 때 하는 행동
         emailCheckBtn.setOnClickListener {
