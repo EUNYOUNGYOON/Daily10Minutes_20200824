@@ -39,7 +39,28 @@
         android:id="@+id/emailCheckResultTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="중복 확인을 해주세요"
+        android:text="중복 확인을 해주세요."
         android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="비밀번호"/>
+
+    <EditText
+        android:id="@+id/signUpPwEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="비밀번호를 8글자 이상으로 입력"
+        android:inputType="textPassword"/>
+
+    <TextView
+        android:id="@+id/pwCheckResultTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="비밀번호를 입력해주세요."/>
+
 
 </LinearLayout>
