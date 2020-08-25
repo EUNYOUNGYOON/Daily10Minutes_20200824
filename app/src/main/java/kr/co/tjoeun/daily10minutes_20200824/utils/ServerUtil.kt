@@ -7,6 +7,12 @@ import java.io.IOException
 
 class ServerUtil {
 
+    // 화면(액티비티)의 입장에서 서버 응답이 돌아왔을 때 실행해줄 내용을 담기위한 인터페이스
+    // 로그인을 갔다가 돌아오면 어떻게 할건지
+    interface JsonResponseHandler {
+        fun onRespnse(json : JSONObject)
+    }
+
     companion object {
 
         // 이 영역 안에 만드는 변수 or 함수는 객체를 이용하지 않고,
@@ -15,7 +21,7 @@ class ServerUtil {
         val BASE_URL = "http://15.164.153.174"
 
         // 로그인 기능 -> 로그인을 수행하는 함수 작성
-        fun postRequestLogin(id : String, pw : String) {
+        fun postRequestLogin(id : String, pw : String, handler: JsonResponseHandler?) {
 
             // 안드로이드 앱이 클라이언트로 동작하도록 도와주자
             val client = OkHttpClient()
@@ -51,6 +57,11 @@ class ServerUtil {
                     // 받아낸 string을 -> 분석하기 용이한 JSONobject 형태로 변환
                     val json = JSONObject(bodyString)
                     Log.d("서버응답본문" , json.toString())
+
+                    //어떤 처리를 해줄지 가이드북(인터페이스)이 존재한다면,
+                    // 그 가이드북에 적힌 내용을 실제로 실행
+                    handler?.onRespnse(json)
+
                 }
 
 
