@@ -50,9 +50,15 @@ class LoginActivity : BaseActivity() {
                         Log.d("로그인시도", "성공상황")
 
                         // 그냥 쓰면 앱 죽고 runOnUiThread 안에서 실행시켜야한다.
-                        runOnUiThread {
-                            Toast.makeText(mContext, "로그인성공", Toast.LENGTH_SHORT).show()
-                        }
+//                        runOnUiThread {
+//                            Toast.makeText(mContext, "로그인성공", Toast.LENGTH_SHORT).show()
+//                        }
+
+                        val myIntent = Intent(mContext, MainActivity::class.java)
+                        startActivity(myIntent)
+                        // 메인으로 이동 후에는 로그인화면은 종료하자
+                        // 뒤로가기 버튼을 눌러도 다시 로그인화면으로 오는것이 아니라 메인화면으로 그대로 유지하기 때문에 finish로 끝내자
+                        finish()
 
                     }
                     else {
