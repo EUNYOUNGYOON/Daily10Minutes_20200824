@@ -34,7 +34,7 @@ class LoginActivity : BaseActivity() {
             // 이 받아낸 id/pw를 어떻게 서버에 로그인 확인으로 요청하는가?
             // new 인터페이스()
             ServerUtil.postRequestLogin(inputId,inputPw, object :ServerUtil.JsonResponseHandler {
-                override fun onRespnse(json: JSONObject) {
+                override fun onResponse(json: JSONObject) {
 
                     //실제로 응답이 돌아왔을 때 실행시켜줄 내용들
                     // 아이디 비번 : kj_cho@nepp.kr / Test!1234
