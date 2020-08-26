@@ -52,6 +52,7 @@
         android:layout_marginTop="5dp"/>
 
     <CheckBox
+        android:id="@+id/autoLoginCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="자동 로그인"/>

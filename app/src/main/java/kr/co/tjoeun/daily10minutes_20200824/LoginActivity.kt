@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
+import kr.co.tjoeun.daily10minutes_20200824.utils.ContextUtil
 import kr.co.tjoeun.daily10minutes_20200824.utils.ServerUtil
 import org.json.JSONObject
 import kotlin.math.sign
@@ -20,6 +21,11 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        autoLoginCheckBox.setOnCheckedChangeListener { compoundButton, isChecked ->
+            Log.d("자동로그인체크여부", isChecked.toString())
+            ContextUtil.setAutoLoginCheck(mContext,isChecked)
+        }
 
         signUpBtn.setOnClickListener {
 
@@ -76,6 +82,9 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        // 자동로그인 체크박스 적용한 데이터를 앱 다시 들어올 때 getter로 가져와서 화면 세팅해주기
+        autoLoginCheckBox.isChecked = ContextUtil.getAutoLoginCheck(mContext)
 
     }
 
