@@ -179,8 +179,9 @@ class ServerUtil {
             val request = Request.Builder()
                 .url(urlStr)
                 .get()
-                .header("X-Http-Token", ContextUtil.getLoginUserToken(context).toString()) // 헤더에 담아서 보내달라고 해서 여기다가 하기
+                .header("X-Http-Token", ContextUtil.getLoginUserToken(context))
                 .build()
+
 
             // 미리 만들어둔 클라이언트 변수를 활용해서 request변수에 적힌 정보로 서비에 요청 날리기(호출 - call)
             client.newCall(request).enqueue(object : Callback {
@@ -197,10 +198,6 @@ class ServerUtil {
                 }
 
             })
-
         }
-
     }
-
-
 }
