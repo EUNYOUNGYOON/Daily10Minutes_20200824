@@ -11,6 +11,7 @@
         android:gravity="center">
 
         <ImageView
+            android:id="@+id/projectImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"/>
@@ -26,9 +27,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical"
+            android:padding="20dp"
             android:gravity="center">
 
             <TextView
+                android:id="@+id/projectTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
@@ -36,6 +39,7 @@
                 android:text="프로젝트 제목자리"/>
 
             <TextView
+                android:id="@+id/projectDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="프로젝트설명자리"
