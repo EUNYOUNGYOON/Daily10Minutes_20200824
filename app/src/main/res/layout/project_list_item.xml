@@ -13,8 +13,13 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@mipmap/ic_launcher"
             android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#77000000"/>
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -24,16 +29,18 @@
             android:gravity="center">
 
             <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:text="프로젝트 제목자리"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:textColor="#FFFFFF"
+                android:text="프로젝트 제목자리"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="프로젝트설명자리"
                 android:textSize="17sp"
+                android:textColor="#FFFFFF"
                 android:layout_marginTop="10dp"/>
 
         </LinearLayout>
