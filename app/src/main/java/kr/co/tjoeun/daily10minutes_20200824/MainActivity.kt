@@ -1,12 +1,15 @@
 package kr.co.tjoeun.daily10minutes_20200824
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.co.tjoeun.daily10minutes_20200824.adapters.ProjectAdapter
 import kr.co.tjoeun.daily10minutes_20200824.datas.Project
+import kr.co.tjoeun.daily10minutes_20200824.utils.ContextUtil
 import kr.co.tjoeun.daily10minutes_20200824.utils.ServerUtil
 import okhttp3.internal.notify
 import org.json.JSONObject
@@ -24,6 +27,21 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        logoutBtn.setOnClickListener {
+            val alert = AlertDialog.Builder(mContext)
+            alert.setTitle("로그아웃 확인")
+            alert.setMessage("정말 로그아웃을 하시겠습니까?")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+                // 실제로그아웃처리
+                ContextUtil.setLoginUserToken(mContext, "")
+                val myIntent = Intent(mContext, LoginActivity::class.java)
+                startActivity(myIntent)
+                finish()
+            })
+            alert.setNegativeButton("취소", null)
+            alert.show()
+        }
 
         // 메인화면에서 리스트뷰를 클릭했을 때의 이벤트
         projectListView.setOnItemClickListener { adapterView, view, i, l ->
