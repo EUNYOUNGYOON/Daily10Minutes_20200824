@@ -6,7 +6,4 @@ class Project {
     var title = ""
     var imgUrl = ""
     var desc = ""
-
-
-
 }

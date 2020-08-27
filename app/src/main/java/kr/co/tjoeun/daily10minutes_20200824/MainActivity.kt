@@ -1,5 +1,6 @@
 package kr.co.tjoeun.daily10minutes_20200824
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +24,19 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        // 메인화면에서 리스트뷰를 클릭했을 때의 이벤트
+        projectListView.setOnItemClickListener { adapterView, view, i, l ->
+
+            val clickedProject = mProjectList[i]
+            val myIntent = Intent(mContext, ProjectDetailActivity::class.java)
+            //프로젝트 정보를 통째로 넣어주기
+            // 빨간줄이 나오는건 Serializable
+            // Project.kt에 가서 해당 속성 넣어주기
+            //myIntent.putExtra("projectInfo", clickedProject)
+            //startActivity(myIntent)
+
+        }
 
     }
 
