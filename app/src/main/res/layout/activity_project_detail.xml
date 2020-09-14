@@ -8,7 +8,9 @@
     tools:context=".ProjectDetailActivity">
 
     <!--    tools : 프리뷰에서만 적용되는 속성 : 개발 편의를 위한 임시값 -->
+    <!--  1. 디테일 화면의 UI 구성 및 id값 부여 -->
     <ImageView
+        android:id="@+id/projectImg"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         tools:src="@mipmap/ic_launcher_round"
@@ -51,6 +53,7 @@
         android:paddingRight="10dp">
 
         <TextView
+            android:id="@+id/descTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="제 취미는 독서입니다."
@@ -58,6 +61,7 @@
             android:textSize="17sp"/>
 
         <TextView
+            android:id="@+id/authTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="마음에 드는 문장 사진찍어 올리기"

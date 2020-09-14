@@ -52,8 +52,8 @@ class MainActivity : BaseActivity() {
             //프로젝트 정보를 통째로 넣어주기
             // 빨간줄이 나오는건 Serializable
             // Project.kt에 가서 해당 속성 넣어주기
-            //myIntent.putExtra("projectInfo", clickedProject)
-            //startActivity(myIntent)
+            myIntent.putExtra("projectInfo", clickedProject)
+            startActivity(myIntent)
 
         }
 
@@ -67,6 +67,8 @@ class MainActivity : BaseActivity() {
         getProjectListFromServer()
         mProjectAdapter = ProjectAdapter(mContext, R.layout.project_list_item, mProjectList)
         projectListView.adapter = mProjectAdapter
+
+
     }
 
     fun getProjectListFromServer(){
