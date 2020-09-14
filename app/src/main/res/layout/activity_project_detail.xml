@@ -4,38 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ProjectDetailActivity">
 
+    <!--    tools : 프리뷰에서만 적용되는 속성 : 개발 편의를 위한 임시값 -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:src="@mipmap/ic_launcher_round"
+        tools:src="@mipmap/ic_launcher_round"
         android:scaleType="centerCrop"/>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="15dp"
-        android:orientation="vertical">
+        android:padding="10dp"
+        android:orientation="horizontal">
 
         // 넣어줄 데이터 세팅
         <TextView
             android:id="@+id/titleTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            tools:text="독서하기"
             android:textSize="25sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"/>
 
         <TextView
-            android:id="@+id/descTxt"
+            android:id="@+id/memsTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="설명 문구 나올자리"
-            android:layout_marginTop="5dp"/>
-
+            tools:text="(현재 참여 인원 : 10명)"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorDarkgray"
+            android:layout_marginLeft="5dp"/>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="제 취미는 독서입니다."
+            android:textColor="@color/colorBlack"
+            android:textSize="17sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="마음에 드는 문장 사진찍어 올리기"
+            android:textColor="@color/colorDarkgray"
+            android:textSize="15sp"
+            android:layout_marginTop="5dp"/>
+
+    </LinearLayout>
+
+
 
 </LinearLayout>
