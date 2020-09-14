@@ -6,4 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".ProjectDetailActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:src="@mipmap/ic_launcher_round"
+        android:scaleType="centerCrop"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="15dp"
+        android:orientation="vertical">
+
+        // 넣어줄 데이터 세팅
+        <TextView
+            android:id="@+id/titleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/descTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="설명 문구 나올자리"
+            android:layout_marginTop="5dp"/>
+
+
+    </LinearLayout>
+
 </LinearLayout>
