@@ -8,7 +8,6 @@ class Project : Serializable {
     var title = ""
     var imgUrl = ""
     var desc = ""
-
-
-
+    var ongoing_users_count = 0
+    var proof_method = ""
 }

@@ -5,6 +5,8 @@ import android.os.Bundle
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_project_detail.*
 import kr.co.tjoeun.daily10minutes_20200824.datas.Project
+import kr.co.tjoeun.daily10minutes_20200824.utils.ServerUtil
+import org.json.JSONObject
 
 class ProjectDetailActivity : BaseActivity() {
 
@@ -29,12 +31,28 @@ class ProjectDetailActivity : BaseActivity() {
         Glide.with(mContext).load(mProject.imgUrl).into(projectImg)
         titleTxt.text = mProject.title
         descTxt.text = mProject.desc
-        memsTxt.text = ""
-        authTxt.text = ""
+        memsTxt.text = "(현재 참여 인원 : ${mProject.ongoing_users_count.toString()}명)"
+        authTxt.text = mProject.proof_method
 
+    }
 
+    override fun onResume() {
+        super.onResume()
+        getProjectDetailFromServer()
+    }
 
+    fun getProjectDetailFromServer() {
 
+        ServerUtil.getRequestProjectDetailById(mContext, mProject.id, object : ServerUtil.JsonResponseHandler{
+            override fun onResponse(json: JSONObject) {
+
+                val data = json.getJSONObject("data")
+                val projectObj = data.getJSONObject("project")
+                
+
+            }
+
+        })
     }
 
 

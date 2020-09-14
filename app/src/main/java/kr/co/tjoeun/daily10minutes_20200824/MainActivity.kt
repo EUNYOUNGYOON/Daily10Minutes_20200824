@@ -88,6 +88,8 @@ class MainActivity : BaseActivity() {
                     project.title = projectObj.getString("title")
                     project.imgUrl = projectObj.getString("img_url")
                     project.desc = projectObj.getString("description")
+                    project.ongoing_users_count = projectObj.getInt("ongoing_users_count")
+                    project.proof_method = projectObj.getString("proof_method")
 
                     mProjectList.add(project)
                 }
