@@ -61,7 +61,7 @@
             android:textSize="17sp"/>
 
         <TextView
-            android:id="@+id/authTxt"
+            android:id="@+id/proofTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="마음에 드는 문장 사진찍어 올리기"

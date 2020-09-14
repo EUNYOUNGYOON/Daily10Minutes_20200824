@@ -31,8 +31,6 @@ class ProjectDetailActivity : BaseActivity() {
         Glide.with(mContext).load(mProject.imgUrl).into(projectImg)
         titleTxt.text = mProject.title
         descTxt.text = mProject.desc
-        memsTxt.text = "(현재 참여 인원 : ${mProject.ongoing_users_count.toString()}명)"
-        authTxt.text = mProject.proof_method
 
     }
 
@@ -48,7 +46,13 @@ class ProjectDetailActivity : BaseActivity() {
 
                 val data = json.getJSONObject("data")
                 val projectObj = data.getJSONObject("project")
-                
+
+                mProject = Project.getProjectFromJson(projectObj)
+
+                runOnUiThread {
+                    proofTxt.text = mProject.proof_method
+                    memsTxt.text = "(현재 참여 인원 : ${mProject.ongoing_users_count.toString()} 명)"
+                }
 
             }
 

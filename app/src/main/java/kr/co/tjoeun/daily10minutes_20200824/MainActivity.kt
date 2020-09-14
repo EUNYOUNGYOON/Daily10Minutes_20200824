@@ -83,13 +83,15 @@ class MainActivity : BaseActivity() {
                 {
                     val projectObj = projectArr.getJSONObject(i)
 
-                    val project = Project()
-                    project.id = projectObj.getInt("id")
-                    project.title = projectObj.getString("title")
-                    project.imgUrl = projectObj.getString("img_url")
-                    project.desc = projectObj.getString("description")
-                    project.ongoing_users_count = projectObj.getInt("ongoing_users_count")
-                    project.proof_method = projectObj.getString("proof_method")
+                    val project = Project.getProjectFromJson(projectObj)
+                    // 원래는 이렇게 하나씩 하는것인데 이걸 모듈화로 바꿈
+//                    val project = Project()
+//                    project.id = projectObj.getInt("id")
+//                    project.title = projectObj.getString("title")
+//                    project.imgUrl = projectObj.getString("img_url")
+//                    project.desc = projectObj.getString("description")
+//                    project.ongoing_users_count = projectObj.getInt("ongoing_users_count")
+//                    project.proof_method = projectObj.getString("proof_method")
 
                     mProjectList.add(project)
                 }
