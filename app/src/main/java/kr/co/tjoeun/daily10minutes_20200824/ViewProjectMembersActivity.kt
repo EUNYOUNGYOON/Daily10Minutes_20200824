@@ -53,7 +53,10 @@ class ViewProjectMembersActivity : BaseActivity() {
                 for( i in 0 until ongoingUserArr.length()){
 
                     val memberObj = ongoingUserArr.getJSONObject(i)
+
                     // memberObj -> List형태로 변환 해줘야지 ArrayList에 추가
+                    val user = User.getUserFromJson(memberObj)
+                    mUserList.add(user)
 
                 }
 
