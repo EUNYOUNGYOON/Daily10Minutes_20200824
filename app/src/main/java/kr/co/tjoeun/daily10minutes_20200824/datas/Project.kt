@@ -12,6 +12,7 @@ class Project : Serializable {
     var ongoing_users_count = 0
     var proof_method = ""
 
+    // null이 들어갈 수도 있다. 디폴트가 널이다.
     var myLastStatus : String? = null
 
     companion object {
