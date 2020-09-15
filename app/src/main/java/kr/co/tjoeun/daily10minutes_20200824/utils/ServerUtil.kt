@@ -295,5 +295,51 @@ class ServerUtil {
                 }
             })
         }
+
+        // --------------------------------------------------------------------------------------------------
+        // 프로젝트의 참여중인 사람들을 보기 위한 API
+        // 상세보기 API + need_all_users 파라미터만 추가
+        fun getRequestUserById(context: Context, projectId: Int, handler: JsonResponseHandler?) {
+
+            //서버에 Request를 날려주는 클라이언트 역할을 돕는 변수 미리 만들기
+            val client = OkHttpClient()
+
+            // 어느 기능으로 갈건지 주소 완성
+            // url(호스트주소 + 기능주소)을 만드는 과정에서 필요 파라미터도 가공 첨부
+            val urlBuilder = "${BASE_URL}/project/${projectId}".toHttpUrlOrNull()!!.newBuilder()
+            // url 가공기를 이용해서 필요한 데이터를 첨부
+            // 여기 메소드는 굳이 email 안담고 보내도 되서 주석처리
+            urlBuilder.addEncodedQueryParameter("need_user_list", "true")
+
+            // 가공이 끝난 url을 가지고 urlStr으로 완성
+            val urlStr = urlBuilder.build().toString()
+
+            // 임시 : 어떻게 url이 가공되었는지 로그로 확인하기 위해
+            Log.d("완성된 url", urlStr)
+
+            // 요청정보를 담는 request
+            val request = Request.Builder()
+                .url(urlStr)
+                .get()
+                .header("X-Http-Token", ContextUtil.getLoginUserToken(context))
+                .build()
+
+
+            // 미리 만들어둔 클라이언트 변수를 활용해서 request변수에 적힌 정보로 서비에 요청 날리기(호출 - call)
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string()
+                    val json = JSONObject(bodyString)
+                    Log.d("서버응답본문", json.toString())
+
+                    handler?.onResponse(json)
+                }
+
+            })
+        }
     }
 }

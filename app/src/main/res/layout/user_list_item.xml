@@ -14,6 +14,7 @@
         android:padding="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userImg"
             android:layout_width="40dp"
             android:layout_height="40dp"
             tools:src="@mipmap/ic_launcher"
@@ -26,6 +27,7 @@
             android:layout_marginLeft="10dp">
 
             <TextView
+                android:id="@+id/userNickNameTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="17dp"
@@ -33,6 +35,7 @@
                 android:textColor="@color/colorBlack"/>
 
             <TextView
+                android:id="@+id/userEmailTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"

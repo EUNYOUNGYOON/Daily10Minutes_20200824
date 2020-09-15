@@ -7,8 +7,13 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_project_detail.*
+import kotlinx.android.synthetic.main.activity_view_project_members.*
+import kr.co.tjoeun.daily10minutes_20200824.adapters.ProjectAdapter
+import kr.co.tjoeun.daily10minutes_20200824.adapters.UserAdapter
 import kr.co.tjoeun.daily10minutes_20200824.datas.Project
+import kr.co.tjoeun.daily10minutes_20200824.datas.User
 import kr.co.tjoeun.daily10minutes_20200824.utils.ServerUtil
 import org.json.JSONObject
 
@@ -25,9 +30,12 @@ class ProjectDetailActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+        // 참여중인 사람들 보기 버튼을 클릭했을 때의 이벤트
         viewAllMemsBtn.setOnClickListener {
 
             val myIntent = Intent(mContext, ViewProjectMembersActivity::class.java)
+            // 어떤 프로젝트의 멤버들을 보고 싶은건지 전달
+            myIntent.putExtra("project", mProject)
             startActivity(myIntent)
         }
 

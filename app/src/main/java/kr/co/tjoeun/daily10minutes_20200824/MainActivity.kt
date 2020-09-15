@@ -9,7 +9,9 @@ import androidx.appcompat.app.AlertDialog
 import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.co.tjoeun.daily10minutes_20200824.adapters.ProjectAdapter
+import kr.co.tjoeun.daily10minutes_20200824.adapters.UserAdapter
 import kr.co.tjoeun.daily10minutes_20200824.datas.Project
+import kr.co.tjoeun.daily10minutes_20200824.datas.User
 import kr.co.tjoeun.daily10minutes_20200824.utils.ContextUtil
 import kr.co.tjoeun.daily10minutes_20200824.utils.ServerUtil
 import okhttp3.internal.notify
