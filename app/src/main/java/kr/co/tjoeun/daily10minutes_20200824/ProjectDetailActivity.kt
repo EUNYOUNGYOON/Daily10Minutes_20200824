@@ -1,7 +1,10 @@
 package kr.co.tjoeun.daily10minutes_20200824
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_project_detail.*
 import kr.co.tjoeun.daily10minutes_20200824.datas.Project
@@ -20,6 +23,30 @@ class ProjectDetailActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        // 신청하기 버튼을 누르면 진짜 신청할건지? 확인(AlertDialog)되면 신청처리
+        applyBtn.setOnClickListener {
+
+            val alert = AlertDialog.Builder(mContext)
+            alert.setTitle("프로젝트 참가 확인")
+            alert.setMessage("${mProject.title} 프로젝트에 참가하시겠습니까?") //메시지 : ex) 독서하기 프로젝트에 참가하시겠습니까?
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
+                //실제로 서버 신청처리
+                ServerUtil.postRequestApplyProject(mContext, mProject.id, object : ServerUtil.JsonResponseHandler{
+                    override fun onResponse(json: JSONObject) {
+                        runOnUiThread {
+
+                            Toast.makeText(mContext,"프로젝트 참가신청 완료", Toast.LENGTH_SHORT).show()
+
+                        }
+                    }
+
+
+                })
+            })
+            alert.setNegativeButton("취소", null)
+            alert.show()
+        }
 
     }
 

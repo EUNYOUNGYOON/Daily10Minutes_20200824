@@ -23,6 +23,7 @@ class ServerUtil {
         // 이 클래스 내부에서만 사용하면 된다.
         private val BASE_URL = "http://15.164.153.174"
 
+        // --------------------------------------------------------------------------------------------------
         // 로그인 기능 -> 로그인을 수행하는 함수 작성
         fun postRequestLogin(id: String, pw: String, handler: JsonResponseHandler?) {
 
@@ -67,7 +68,8 @@ class ServerUtil {
                 }
             })
         }
-        
+
+        // --------------------------------------------------------------------------------------------------
         // 회원가입
         fun putRequestSignUp(id: String, pw: String, nickName: String, handler: JsonResponseHandler?) {
 
@@ -114,6 +116,7 @@ class ServerUtil {
             })
         }
 
+        // --------------------------------------------------------------------------------------------------
         // 중복확인
         fun getRequestEmailCheck(email: String, handler: JsonResponseHandler?) {
 
@@ -156,6 +159,7 @@ class ServerUtil {
 
         }
 
+        // --------------------------------------------------------------------------------------------------
         // 목록조회
         fun getRequestProjectList(context: Context, handler: JsonResponseHandler?) {
 
@@ -200,6 +204,7 @@ class ServerUtil {
             })
         }
 
+        // --------------------------------------------------------------------------------------------------
         // 상세목록조회
         fun getRequestProjectDetailById(context: Context, projectId: Int, handler: JsonResponseHandler?) {
 
@@ -241,6 +246,53 @@ class ServerUtil {
                     handler?.onResponse(json)
                 }
 
+            })
+        }
+
+        // --------------------------------------------------------------------------------------------------
+        // 프로젝트 신청하기
+        fun postRequestApplyProject(context: Context, projectId: Int, handler: JsonResponseHandler?) {
+
+            // 안드로이드 앱이 클라이언트로 동작하도록 도와주자
+            val client = OkHttpClient()
+
+            // 어느 기능으로 갈건지 주소 완성 -> http://호스트주소/project
+            val urlStr = "${BASE_URL}/project"
+
+            // 파라미터들을 미리 담아두자 -> POST(/PUT/PATCH) - formData 활용
+            val formData = FormBody.Builder()
+                .add("project_id", projectId.toString())
+                .build()
+
+            // 목적지의 정보를 Request 형태로 완성하자 (티켓 최종 발권)
+            val request = Request.Builder()
+                .url(urlStr)
+                .post(formData)
+                //헤더가 필요하면 여기서
+                .header("X-Http-Token", ContextUtil.getLoginUserToken(context))
+                .build()
+
+            // 미리 만들어둔 클라이언트 변수를 활용해서 request변수에 적힌 정보로 서비에 요청 날리기(호출 - call)
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    // 서버 연결 자체에 실패
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    // 결과가 성공이든 실패든 상관없이 서버가 뭔가 답변을 해준 경우
+                    // 응답이 돌아온 경우
+
+                    // 서버가 내려준 응답의 본문을 string 형ㅇ태로 저장
+                    val bodyString = response.body!!.string()
+
+                    // 받아낸 string을 -> 분석하기 용이한 JSONobject 형태로 변환
+                    val json = JSONObject(bodyString)
+                    Log.d("서버응답본문" , json.toString())
+
+                    //어떤 처리를 해줄지 가이드북(인터페이스)이 존재한다면,
+                    // 그 가이드북에 적힌 내용을 실제로 실행
+                    handler?.onResponse(json)
+                }
             })
         }
     }
