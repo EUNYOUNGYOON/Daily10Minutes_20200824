@@ -36,8 +36,6 @@ class User {
                 user.profileImageArrayList.add(imageUrl)
 
             }
-
-
             return user
 
 

@@ -37,7 +37,7 @@ class UserAdapter (
         nickNameTxt.text = data.nickName
         emailTxt.text = data.email
         //이미지뷰 같은경우는 Glide로 사용하는거
-        //Glide.with(mContext).load(data.profileImageArrayList[position]).into(imgTxt)
+        Glide.with(mContext).load(data.profileImageArrayList[0]).into(imgTxt)
         return row
 
     }

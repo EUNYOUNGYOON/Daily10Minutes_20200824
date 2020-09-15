@@ -35,9 +35,10 @@ class ViewProjectMembersActivity : BaseActivity() {
 
         mProject = intent.getSerializableExtra("project") as Project
 
-        getUserListFromServer()
         mUserAdapter = UserAdapter(mContext, R.layout.user_list_item, mUserList)
         membersListView.adapter = mUserAdapter
+
+        getUserListFromServer()
 
     }
 
@@ -57,12 +58,16 @@ class ViewProjectMembersActivity : BaseActivity() {
                     // memberObj -> List형태로 변환 해줘야지 ArrayList에 추가
                     val user = User.getUserFromJson(memberObj)
                     mUserList.add(user)
+                }
 
+                // 프로젝트 멤버들이 추가 되었으니 새로 반영처리를 해줘야한다
+                // 서버 통신 중에 UI에 영향을 주는건 runOnThread로 처리
+
+                runOnUiThread {
+                    mUserAdapter.notifyDataSetChanged()
                 }
 
             }
-
-
         })
     }
 
