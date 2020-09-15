@@ -101,5 +101,12 @@
         android:layout_height="wrap_content"
         android:text="참여중인 사람들 보기"/>
 
+    <Button
+        android:id="@+id/viewProofMemsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="날짜별 인증내역 보기"/>
+
+
 
 </LinearLayout>

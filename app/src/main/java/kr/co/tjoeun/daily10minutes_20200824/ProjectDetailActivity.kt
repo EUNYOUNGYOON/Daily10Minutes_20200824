@@ -30,6 +30,15 @@ class ProjectDetailActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+        //
+        viewProofMemsBtn.setOnClickListener {
+
+            val myIntent = Intent(mContext, ViewDailyProofActivity::class.java)
+            // 어떤 프로젝트의 멤버들을 보고 싶은건지 전달
+            //myIntent.putExtra("project", mProject)
+            startActivity(myIntent)
+        }
+
         // 참여중인 사람들 보기 버튼을 클릭했을 때의 이벤트
         viewAllMemsBtn.setOnClickListener {
 

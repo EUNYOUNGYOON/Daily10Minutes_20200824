@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ViewProjectMembersActivity"></activity>
+        <activity android:name=".ViewDailyProofActivity"></activity>
+        <activity android:name=".ViewProjectMembersActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -25,7 +26,7 @@
         <activity android:name=".ProjectDetailActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
 
         <service android:name=".fcm.MyFCMService">
             <intent-filter>
