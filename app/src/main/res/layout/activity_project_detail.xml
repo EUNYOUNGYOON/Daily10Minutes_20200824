@@ -95,6 +95,11 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/viewAllMemsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="참여중인 사람들 보기"/>
 
 
 </LinearLayout>

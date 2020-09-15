@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SplashActivity"
+        <activity android:name=".ViewProjectMembersActivity"></activity>
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,12 +25,11 @@
         <activity android:name=".ProjectDetailActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"></activity>
 
-        </activity>
         <service android:name=".fcm.MyFCMService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
     </application>
